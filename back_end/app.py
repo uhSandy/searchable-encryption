@@ -3,44 +3,64 @@
 # Press Shift+F10 to execute it or replace it with your code.
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 
-import utils.in_memoryDb
-import utils.inverted_index4
+# import utils.in_memoryDb
+# import utils.inverted_index4
+# import sys
+# sys.path.append('utils')
 import os
-from flask import Flask
-from flask_restful import Resource, Api, reqparse, request
+from flask import Flask, request, render_template
+from flask_cors import CORS
+# from flask_restful import Resource, Api, reqparse, request
 import pandas as pd
 import ast
-from utils.search import searchKeys
-from utils.myclass import MyClass
+# try:
+#     from search import * 
+# except NameError:
+#     from search import *
+# import search
+# from search import searchKeys
+# from utils.search import *
+# from utils.search import searchKeys
+# from search import *
+# from search import searchKeys
+# from testdocuments import *
+# from utils import *
+# from utils import *
+# from utils.search import searchKeys
+# from utils.myclass import MyClass
 
 app = Flask(__name__)
-api = Api(app)
+cors = CORS(app)
 
+@app.route("/static/", methods = ["GET"])
+def loadHome():
+    # return {'data': 'test'}, 200  # return data and 200 OK code
+    return render_template('index.html')
 
-class Search(Resource):
-    def get(self):
-        return {'data': 'test'}, 200  # return data and 200 OK code
+@app.route("/search", methods = ["POST"])
+def search_key():
+    print("@@@@@@@@@@@")
+    request_data = request.get_json()
 
-    def post(self):
-        print("@@@@@@@@@@@")
-        request_data = request.get_json()
+    print(type(request_data))
+    print("@@")
 
-        print(type(request_data))
-        print("@@")
+    # # Create an instance of the MyClass
+    # my_class_instance = MyClass()
+    #
+    # # Call the method from the MyClass to process the data
+    # processed_data = my_class_instance.process_data("tttt")
+    #
+    print(request_data["searchkeys"])
+    print("----------")
 
-        # # Create an instance of the MyClass
-        # my_class_instance = MyClass()
-        #
-        # # Call the method from the MyClass to process the data
-        # processed_data = my_class_instance.process_data("tttt")
-        #
-        print(request_data["searchkeys"])
-        print("----------")
+    # my_class_instance = searchKeys(request_data)
+    # utils.search.searchKeys(request_data["searchkeys"])
 
-       # my_class_instance = searchKeys(request_data)
-        utils.search.searchKeys(request_data["searchkeys"])
-
-        return {'data': "success"}, 200  # return data with 200 OK
+    return {'data': "success"}, 200  # return data with 200 OK
+    # files_list = searchKeys(request_data["searchkeys"])
+    # return {'data': 'hj'}, 200  # return data with 200 OK
+    # return {"path": "output_csv_file_cool.csv"}
 
 
 # def print_hi(name):
@@ -97,13 +117,13 @@ class Search(Resource):
     #     print("-----------------------------")
 
 
-api.add_resource(Search, '/search')
+# api.add_resource(Search, '/search')
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     #print_hi('PyCharm')
     #main()
-    app.run()  # run our Flask app
+    app.run(debug=True)  # run our Flask app
 
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/

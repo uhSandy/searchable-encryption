@@ -1,0 +1,6 @@
+{
+    "python.analysis.extraPaths": [
+        "./back_end/utils",
+        "./back_end/Manager"
+    ]
+}

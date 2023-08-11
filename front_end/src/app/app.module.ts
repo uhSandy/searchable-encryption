@@ -1,6 +1,6 @@
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule } from "@angular/core";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -33,6 +33,7 @@ import { LandingpageComponent } from "./pages/examples/landingpage/landingpage.c
   ],
   imports: [
     BrowserAnimationsModule,
+    ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
     RouterModule,
@@ -42,7 +43,7 @@ import { LandingpageComponent } from "./pages/examples/landingpage/landingpage.c
     // TooltipModule.forRoot(),
     // CollapseModule.forRoot(),
     // TabsModule.forRoot(),
-    PagesModule
+    PagesModule,
     // PaginationModule.forRoot(),
     // AlertModule.forRoot(),
     // BsDatepickerModule.forRoot(),
